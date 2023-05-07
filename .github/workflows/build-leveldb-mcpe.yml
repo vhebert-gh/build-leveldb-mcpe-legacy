@@ -1,0 +1,37 @@
+﻿name: build-leveldb-mcpe
+
+on: [push]
+
+env:
+  LEVELDB_MCPE_COMMIT_HASH: 278d5665
+
+jobs:
+  build-leveldb-mcpe:
+    runs-on: windows-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: build
+        id: build
+        shell: cmd
+        run: call build.cmd
+
+      - name: release
+        id: release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: leveldb-mcpe-${{ env.LEVELDB_MCPE_COMMIT_HASH }}
+          release_name: leveldb-mcpe-${{ env.LEVELDB_MCPE_COMMIT_HASH }}
+
+      - name: upload
+        uses: actions/upload-release-asset@v1
+        env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+           upload_url: ${{ steps.release.outputs.upload_url }}
+           asset_path: "leveldb-mcpe-${{ env.LEVELDB_MCPE_COMMIT_HASH }}.zip"
+           asset_name: "leveldb-mcpe-${{ env.LEVELDB_MCPE_COMMIT_HASH }}.zip"
+           asset_content_type: application/zip

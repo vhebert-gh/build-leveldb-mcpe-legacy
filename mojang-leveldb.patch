@@ -1,0 +1,30 @@
+diff --git a/db/c.cc b/db/c.cc
+index 8dac2c1..fe1f556 100644
+--- a/db/c.cc
++++ b/db/c.cc
+@@ -5,7 +5,6 @@
+ #include "leveldb/c.h"
+ 
+ #include <stdlib.h>
+-#include <unistd.h>
+ #include "leveldb/cache.h"
+ #include "leveldb/comparator.h"
+ #include "leveldb/db.h"
+diff --git a/db/db_iter.cc b/db/db_iter.cc
+index 3b2035e..7efab0f 100644
+--- a/db/db_iter.cc
++++ b/db/db_iter.cc
+@@ -14,6 +14,13 @@
+ #include "util/mutexlock.h"
+ #include "util/random.h"
+ 
++#if _WIN32
++#include <BaseTsd.h>
++typedef SSIZE_T ssize_t;
++#else
++#include <unistd.h>
++#endif
++
+ namespace leveldb {
+ 
+ #if 0
