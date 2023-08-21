@@ -4,7 +4,7 @@ setlocal EnableDelayedExpansion
 set INSTAll=%~dp0build
 set DEPENDENCIES=%~dp0dependencies
 
-set ZLIB_VERSION=1.2.13
+set ZLIB_VERSION=1.3
 set LEVELDB_MCPE_COMMIT_HASH=278d5665
 
 where.exe /Q curl.exe || (
