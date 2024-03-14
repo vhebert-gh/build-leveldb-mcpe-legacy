@@ -1,4 +1,7 @@
-﻿Static build of [leveldb-mcpe](https://github.com/Mojang/leveldb-mcpe)
+﻿# NOTICE
+This repo is no longer maintained and only exists for preservation purposes.
+
+Static build of [leveldb-mcpe-legacy](https://github.com/vhebert-gh/levedb-mcpe-legacy)
 for 64-bit Windows.
 
 # Building
